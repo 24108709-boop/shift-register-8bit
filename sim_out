@@ -1,0 +1,177 @@
+#! /usr/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/system.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/va_math.vpi";
+:vpi_module "/usr/lib/x86_64-linux-gnu/ivl/v2009.vpi";
+S_0x5d0d3b8cca60 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+S_0x5d0d3b8ccbf0 .scope module, "tb_shift_register" "tb_shift_register" 3 3;
+ .timescale -9 -12;
+v0x5d0d3b8fa150_0 .var "clk", 0 0;
+v0x5d0d3b8fa210_0 .var "ena", 0 0;
+v0x5d0d3b8fa2b0_0 .var "rst_n", 0 0;
+v0x5d0d3b8fa350_0 .var "ui_in", 7 0;
+v0x5d0d3b8fa3f0_0 .var "uio_in", 7 0;
+L_0x7ef6d81b7060 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v0x5d0d3b8fa490_0 .net "uio_oe", 7 0, L_0x7ef6d81b7060;  1 drivers
+L_0x7ef6d81b7018 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v0x5d0d3b8fa560_0 .net "uio_out", 7 0, L_0x7ef6d81b7018;  1 drivers
+v0x5d0d3b8fa630_0 .net "uo_out", 7 0, L_0x5d0d3b8fa9d0;  1 drivers
+S_0x5d0d3b89c490 .scope module, "uut" "tt_um_shift_register_8bit" 3 17, 4 3 0, S_0x5d0d3b8ccbf0;
+ .timescale 0 0;
+    .port_info 0 /INPUT 8 "ui_in";
+    .port_info 1 /OUTPUT 8 "uo_out";
+    .port_info 2 /INPUT 8 "uio_in";
+    .port_info 3 /OUTPUT 8 "uio_out";
+    .port_info 4 /OUTPUT 8 "uio_oe";
+    .port_info 5 /INPUT 1 "ena";
+    .port_info 6 /INPUT 1 "clk";
+    .port_info 7 /INPUT 1 "rst_n";
+L_0x5d0d3b8fa9d0 .functor BUFZ 8, v0x5d0d3b8f9880_0, C4<00000000>, C4<00000000>, C4<00000000>;
+v0x5d0d3b8d8210_0 .net "clk", 0 0, v0x5d0d3b8fa150_0;  1 drivers
+v0x5d0d3b8f9700_0 .net "ena", 0 0, v0x5d0d3b8fa210_0;  1 drivers
+v0x5d0d3b8f97c0_0 .net "mode", 1 0, L_0x5d0d3b8fa7a0;  1 drivers
+v0x5d0d3b8f9880_0 .var "reg_data", 7 0;
+v0x5d0d3b8f9960_0 .net "rst_n", 0 0, v0x5d0d3b8fa2b0_0;  1 drivers
+v0x5d0d3b8f9a70_0 .net "sin_left", 0 0, L_0x5d0d3b8fa890;  1 drivers
+v0x5d0d3b8f9b30_0 .net "sin_right", 0 0, L_0x5d0d3b8fa930;  1 drivers
+v0x5d0d3b8f9bf0_0 .net "ui_in", 7 0, v0x5d0d3b8fa350_0;  1 drivers
+v0x5d0d3b8f9cd0_0 .net "uio_in", 7 0, v0x5d0d3b8fa3f0_0;  1 drivers
+v0x5d0d3b8f9db0_0 .net "uio_oe", 7 0, L_0x7ef6d81b7060;  alias, 1 drivers
+v0x5d0d3b8f9e90_0 .net "uio_out", 7 0, L_0x7ef6d81b7018;  alias, 1 drivers
+v0x5d0d3b8f9f70_0 .net "uo_out", 7 0, L_0x5d0d3b8fa9d0;  alias, 1 drivers
+E_0x5d0d3b8dcfd0/0 .event negedge, v0x5d0d3b8f9960_0;
+E_0x5d0d3b8dcfd0/1 .event posedge, v0x5d0d3b8d8210_0;
+E_0x5d0d3b8dcfd0 .event/or E_0x5d0d3b8dcfd0/0, E_0x5d0d3b8dcfd0/1;
+L_0x5d0d3b8fa7a0 .part v0x5d0d3b8fa3f0_0, 0, 2;
+L_0x5d0d3b8fa890 .part v0x5d0d3b8fa3f0_0, 2, 1;
+L_0x5d0d3b8fa930 .part v0x5d0d3b8fa3f0_0, 3, 1;
+    .scope S_0x5d0d3b89c490;
+T_0 ;
+    %wait E_0x5d0d3b8dcfd0;
+    %load/vec4 v0x5d0d3b8f9960_0;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 8;
+    %assign/vec4 v0x5d0d3b8f9880_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x5d0d3b8f9700_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.2, 8;
+    %load/vec4 v0x5d0d3b8f97c0_0;
+    %dup/vec4;
+    %pushi/vec4 0, 0, 2;
+    %cmp/u;
+    %jmp/1 T_0.4, 6;
+    %dup/vec4;
+    %pushi/vec4 1, 0, 2;
+    %cmp/u;
+    %jmp/1 T_0.5, 6;
+    %dup/vec4;
+    %pushi/vec4 2, 0, 2;
+    %cmp/u;
+    %jmp/1 T_0.6, 6;
+    %dup/vec4;
+    %pushi/vec4 3, 0, 2;
+    %cmp/u;
+    %jmp/1 T_0.7, 6;
+    %load/vec4 v0x5d0d3b8f9880_0;
+    %assign/vec4 v0x5d0d3b8f9880_0, 0;
+    %jmp T_0.9;
+T_0.4 ;
+    %load/vec4 v0x5d0d3b8f9880_0;
+    %assign/vec4 v0x5d0d3b8f9880_0, 0;
+    %jmp T_0.9;
+T_0.5 ;
+    %load/vec4 v0x5d0d3b8f9880_0;
+    %parti/s 7, 0, 2;
+    %load/vec4 v0x5d0d3b8f9a70_0;
+    %concat/vec4; draw_concat_vec4
+    %assign/vec4 v0x5d0d3b8f9880_0, 0;
+    %jmp T_0.9;
+T_0.6 ;
+    %load/vec4 v0x5d0d3b8f9b30_0;
+    %load/vec4 v0x5d0d3b8f9880_0;
+    %parti/s 7, 1, 2;
+    %concat/vec4; draw_concat_vec4
+    %assign/vec4 v0x5d0d3b8f9880_0, 0;
+    %jmp T_0.9;
+T_0.7 ;
+    %load/vec4 v0x5d0d3b8f9bf0_0;
+    %assign/vec4 v0x5d0d3b8f9880_0, 0;
+    %jmp T_0.9;
+T_0.9 ;
+    %pop/vec4 1;
+T_0.2 ;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x5d0d3b8ccbf0;
+T_1 ;
+    %delay 5000, 0;
+    %load/vec4 v0x5d0d3b8fa150_0;
+    %inv;
+    %store/vec4 v0x5d0d3b8fa150_0, 0, 1;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0x5d0d3b8ccbf0;
+T_2 ;
+    %vpi_call/w 3 32 "$dumpfile", "tb_shift_register.vcd" {0 0 0};
+    %vpi_call/w 3 33 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x5d0d3b8ccbf0 {0 0 0};
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5d0d3b8fa150_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x5d0d3b8fa2b0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5d0d3b8fa210_0, 0, 1;
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v0x5d0d3b8fa350_0, 0, 8;
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v0x5d0d3b8fa3f0_0, 0, 8;
+    %delay 20000, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0x5d0d3b8fa2b0_0, 0, 1;
+    %vpi_call/w 3 44 "$display", "[%0t ns] Reset xong, b\341\272\257t \304\221\341\272\247u ki\341\273\203m tra...", $time {0 0 0};
+    %delay 10000, 0;
+    %pushi/vec4 170, 0, 8;
+    %store/vec4 v0x5d0d3b8fa350_0, 0, 8;
+    %pushi/vec4 3, 0, 8;
+    %store/vec4 v0x5d0d3b8fa3f0_0, 0, 8;
+    %delay 10000, 0;
+    %vpi_call/w 3 52 "$display", "[%0t ns] Mode Parallel Load (11): ui_in = 8b10101010 | uo_out = %b (Mong \304\221\341\273\243i: 10101010)", $time, v0x5d0d3b8fa630_0 {0 0 0};
+    %delay 10000, 0;
+    %pushi/vec4 0, 0, 8;
+    %store/vec4 v0x5d0d3b8fa3f0_0, 0, 8;
+    %pushi/vec4 240, 0, 8;
+    %store/vec4 v0x5d0d3b8fa350_0, 0, 8;
+    %delay 10000, 0;
+    %vpi_call/w 3 59 "$display", "[%0t ns] Mode Hold (00): uo_out = %b (Mong \304\221\341\273\243i: 10101010)", $time, v0x5d0d3b8fa630_0 {0 0 0};
+    %delay 10000, 0;
+    %pushi/vec4 5, 0, 8;
+    %store/vec4 v0x5d0d3b8fa3f0_0, 0, 8;
+    %delay 10000, 0;
+    %vpi_call/w 3 66 "$display", "[%0t ns] Mode Shift Left (01): uo_out = %b (Mong \304\221\341\273\243i: 01010101)", $time, v0x5d0d3b8fa630_0 {0 0 0};
+    %delay 10000, 0;
+    %pushi/vec4 2, 0, 8;
+    %store/vec4 v0x5d0d3b8fa3f0_0, 0, 8;
+    %delay 10000, 0;
+    %vpi_call/w 3 73 "$display", "[%0t ns] Mode Shift Right (10): uo_out = %b (Mong \304\221\341\273\243i d\341\273\213ch ph\341\272\243i 1 bit)", $time, v0x5d0d3b8fa630_0 {0 0 0};
+    %delay 20000, 0;
+    %vpi_call/w 3 76 "$display", "[%0t ns] Ho\303\240n t\341\272\245t m\303\264 ph\341\273\217ng ki\341\273\203m tra!", $time {0 0 0};
+    %vpi_call/w 3 77 "$finish" {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "tb_shift_register.v";
+    "tt_um_shift_register_8bit.v";
